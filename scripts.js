@@ -3,11 +3,6 @@ let tasks = [];//{title:"123",done:false,vip：}
 
 function renderEditor(){
     let inputEl = document.querySelector("#default-todo-panel .todo-editor > input");
-/*
-    inputEl.onchange = (e) =>{
-        console.log("text,",e.target.value)
-       // console.log("input change:",e);
-    };*/
 
 //添加操作
 let addTask = () => {
@@ -17,7 +12,7 @@ let addTask = () => {
 
     let newTask = {
         title: inputEl.Value,
-        done: false, 
+        done: false
         
     };
     inputEl.Value = "";
@@ -52,9 +47,12 @@ function renderTaskItems()
 
         let item = document.createElement("div");
         item.className= "task";
+
         //状态保存
         let doneEl = document.createElement("input");
         doneEl.type = "checkbox";
+
+        //完成操作
         doneEl.checked = task.done;
 
         if (task.done){
@@ -66,12 +64,18 @@ function renderTaskItems()
         doneEl.onchange = (e) => {
             task.done = e.target.checked;
             //console.log("checkbox:",e);
+            if (task.done) {
+                item.classList.add("done")
+            }
+            else {
+                item.classList.remove("done");
+            }
         }
         item.append(doneEl);
 
-        let titleEl = document.createElement("label");
-        titleEl.innerText = task.title;
-        item.append(titleEl);
+        let labelEl = document.createElement("label");
+        labelEl.innerText = task.title;
+        item.append(labelEl);
 
         let ctrlbarEl = renderTaskCtrlBut(tasks , i);
 
@@ -87,7 +91,7 @@ function renderTaskCtrlBut(tasks , taskIdx){
     //上移按钮
     let upEl = document.createElement("button");
     if (taskIdx === 0){
-        upEl.disabled == true
+        upEl.disabled == true;
     }
     upEl.innerText = "🠕";
     upEl.onclick = () => {
@@ -102,9 +106,9 @@ function renderTaskCtrlBut(tasks , taskIdx){
 
     };
     ctrlbarEl.append(downEl);
-
+    //删除按钮
     let cancelEl = document.createElement("button");
-    cancelEl.innerText = "X";
+    cancelEl.innerText = "×";
     
     //delete操作
     cancelEl.onclick = () => {
@@ -118,4 +122,4 @@ function renderTaskCtrlBut(tasks , taskIdx){
     }
 
 renderEditor();
-renderTaskItems();
+//renderTaskItems();

@@ -14,13 +14,20 @@ body{
 .todo-editor{
     padding: 5px 20px;
     display: flex;
+    background-color: bisque;
 }
 
 .todo-editor input{
     flex-grow: 1;
+    margin-right: 6px;
     font-size: 1.2em;
     padding: 2px 5px;
 }
+.task.done > label{
+    text-decoration: line-through;
+}
+
+/*待办任务样式*/
 .todp-items{
     padding: 2px 5px;
 }
@@ -28,9 +35,10 @@ body{
     display: flex;
     align-items: center;
 }
+
 /*字体大小,check-box颜色！*/
 
-.todo-items > .task.input{
+.todo-items > .task > input{
     width: 1.5em;
     height: 1.5em;
 }
@@ -45,6 +53,10 @@ body{
     color: blue;
     cursor: pointer;
 }
+.todo-items .ctrlbar > button ：hover{
+    font-weight: bolder; 
+}
+
 /*特殊按钮不加粗，呈灰色*/
 .todo-items .ctrlbar > button:disabled{
     color :grey;
@@ -52,11 +64,6 @@ body{
 .todo-items .ctrlbar > button ：disabled ：hover {
     font-weight: unset; 
 }
-.todo-items .ctrlbar > button ：hover{
-    font-weight: bolder; 
-}
 
 
-.task.done > label{
-    text-decoration: line-through;
-}
+
