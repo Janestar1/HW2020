@@ -9,63 +9,113 @@ function renderEditor(){
        // console.log("input change:",e);
     };*/
 
-    inputEl.onkeypress = (e) =>{
-        console.log(e);
+//添加操作
+let addTask = () => {
+    if (inputEl.Value.length === 0){
+        return;
+    }
+
+    let newTask = {
+        title: inputEl.Value,
+        done: false, 
+        
+    };
+    inputEl.Value = "";
+    tasks.push(newTask);
+    console.log("tasks:",tasks);
+    renderTaskItems();
+}
+    inputEl.onkeypress = (e) => {
+        if (e.key === "Enter"){
+            addTask();
+        }
     };
     
     let addEl = document.querySelector("#default-todo-panel .todo-editor > button");
     addEl.onclick = (e) => {
-        console.log("add click");
-        let newTask = {
-            title: inputEl.Value,
-            done: false, 
-            
-        };
-        inputEl.Value = "";
-        tasks.push(newTask);
-        console.log("tasks:",tasks);
-        renderTaskItems();
+        addTask();
     };
 } 
 
 function renderTaskItems()
 {
     console.log("render items");
-    let itemsEl = document.querySelector("#default-todo-panel .todo-items");
+    let itemsEl = document.querySelector(".todo-panel .todo-items");
     
     //itemsEl.querySelectorAll("*");
     //console.log(itemsEl);
-    itemsEl.querySelectorAll("div").forEach((node)=>node.remove());
+    itemsEl.querySelectorAll("div").forEach((node) => node.remove());
     
     for(let i = 0;i < tasks.length;i++)
     {
         let task = tasks[i];
-        let itemEl = document.createElement("div");
-        
+
+        let item = document.createElement("div");
+        item.className= "task";
+        //状态保存
         let doneEl = document.createElement("input");
         doneEl.type = "checkbox";
-        itemEl.append(doneEl);
+        doneEl.checked = task.done;
+
+        if (task.done){
+            item.classList.add("done");
+        }
+        else{
+            item.classList.remove("done");
+        }
+        doneEl.onchange = (e) => {
+            task.done = e.target.checked;
+            //console.log("checkbox:",e);
+        }
+        item.append(doneEl);
 
         let titleEl = document.createElement("label");
         titleEl.innerText = task.title;
-        itemEl.append(titleEl);
+        item.append(titleEl);
 
-        let cancelEl = document.createElement("button");
-        cancelEl.innerText = "X";
-        itemEl.append(cancelEl);
+        let ctrlbarEl = renderTaskCtrlBut(tasks , i);
 
-        itemsEl.append(itemEl);
+        item.append(ctrlbarEl);
+        itemsEl.append(item);
+        }
     }
-}
+
+function renderTaskCtrlBut(tasks , taskIdx){
+    let ctrlbarEl = document.createElement("div");
+    ctrlbarEl.className = "ctrlbar";
+
+    //上移按钮
+    let upEl = document.createElement("button");
+    if (taskIdx === 0){
+        upEl.disabled == true
+    }
+    upEl.innerText = "🠕";
+    upEl.onclick = () => {
+
+    };
+    ctrlbarEl.append(upEl);
+
+    //下移按钮
+    let downEl = document.createElement("button");
+    downEl.innerText = "🠗";
+    downEl.onclick = () => {
+
+    };
+    ctrlbarEl.append(downEl);
+
+    let cancelEl = document.createElement("button");
+    cancelEl.innerText = "X";
+    
+    //delete操作
+    cancelEl.onclick = () => {
+        tasks.splice(taskIdx,1);
+        renderTaskItems();
+    };
+        ctrlbarEl.append(cancelEl);
+        
+        return ctrlbarEl;
+       
+    }
+
 renderEditor();
 renderTaskItems();
-/*
-
-function renderEditor()
-    let inputEl = document.querySelector("#default-todo-panel.todo-editor > input")
-    inputEl.onchange = (e) =>{
-        console.log("text,",e.target.value);
-        console.log("input change:",e);
-    };
-
-let addEl = document.querySelector("#default-")*/

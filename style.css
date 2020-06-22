@@ -9,13 +9,54 @@ body{
     min-height: 20em;
     box-shadow: 4px 6px 6px #888;
     margin-top: 5em;
-}    
+}   
+/*输入框样式*/ 
 .todo-editor{
     padding: 5px 20px;
     display: flex;
 }
+
 .todo-editor input{
     flex-grow: 1;
-    flex-size: 1.2em;
+    font-size: 1.2em;
     padding: 2px 5px;
+}
+.todp-items{
+    padding: 2px 5px;
+}
+.todo-items > .task{
+    display: flex;
+    align-items: center;
+}
+/*字体大小,check-box颜色！*/
+
+.todo-items > .task.input{
+    width: 1.5em;
+    height: 1.5em;
+}
+/*按钮样式*/
+.todo-items > .task.label{
+    flex-grow: 1;
+}
+
+.todo-items .ctrlbar > button {
+    border: none;
+    background: none;
+    color: blue;
+    cursor: pointer;
+}
+/*特殊按钮不加粗，呈灰色*/
+.todo-items .ctrlbar > button:disabled{
+    color :grey;
+}
+.todo-items .ctrlbar > button ：disabled ：hover {
+    font-weight: unset; 
+}
+.todo-items .ctrlbar > button ：hover{
+    font-weight: bolder; 
+}
+
+
+.task.done > label{
+    text-decoration: line-through;
 }
