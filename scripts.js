@@ -5,16 +5,16 @@ function renderEditor() {
     let inputEl = document.querySelector("#default-todo-panel .todo-editor > input");
     //添加操作
     let addTask = () => {
-        if (inputEl.Value.length === 0) {
+        if (inputEl.value.length === 0) {
             return;
         }
 
         let newTask = {
-            title: inputEl.Value,
+            title: inputEl.value,
             done: false
 
         };
-        inputEl.Value = "";
+        inputEl.value = "";
         tasks.push(newTask);
         console.log("tasks:", tasks);
         renderTaskItems();
@@ -30,9 +30,7 @@ function renderEditor() {
         addTask();
     };
 
-    function newFunction() {
-        inputEl.append(input);
-    }
+    
 }
 
 function renderTaskItems() {
@@ -92,19 +90,28 @@ function renderTaskCtrlBut(tasks, taskIdx) {
     //上移按钮
     let upEl = document.createElement("button");
     if (taskIdx === 0) {
-        upEl.disabled == true;
+        upEl.disabled = true;
     }
     upEl.innerText = "🠕";
     upEl.onclick = () => {
-
+        let t = tasks[taskIdx];
+        tasks[taskIdx] = tasks[taskIdx - 1];
+        tasks[taskIdx - 1] = t;
+        renderTaskItems();
     };
     ctrlbarEl.append(upEl);
 
     //下移按钮
     let downEl = document.createElement("button");
     downEl.innerText = "🠗";
+    if (taskIdx === tasks.length-1){
+        downEl.disabled = true;
+    }
     downEl.onclick = () => {
-
+        let t = tasks[taskIdx];
+        tasks[taskIdx] = tasks[taskIdx + 1];
+        tasks[taskIdx + 1] = t;
+        renderTaskItems();
     };
     ctrlbarEl.append(downEl);
     //删除按钮
@@ -123,4 +130,4 @@ function renderTaskCtrlBut(tasks, taskIdx) {
 }
 
 renderEditor();
-//renderTaskItems();
+renderTaskItems();

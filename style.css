@@ -7,7 +7,7 @@ body{
     width: 30em;
     border: 1px solid #eee;
     min-height: 20em;
-    box-shadow: 4px 6px 6px #888;
+    box-shadow: 4px 6px 6px orange;
     margin-top: 5em;
 }   
 /*输入框样式*/ 
@@ -47,13 +47,13 @@ body{
     flex-grow: 1;
 }
 
-.todo-items .ctrlbar > button {
+.todo-items .ctrlbar  button {
     border: none;
     background: none;
     color: blue;
     cursor: pointer;
 }
-.todo-items .ctrlbar > button ：hover{
+.todo-items .ctrlbar  button:hover {
     font-weight: bolder; 
 }
 
@@ -61,9 +61,6 @@ body{
 .todo-items .ctrlbar > button:disabled{
     color :grey;
 }
-.todo-items .ctrlbar > button ：disabled ：hover {
+.todo-items .ctrlbar > button:disabled :hover {
     font-weight: unset; 
 }
-
-
-
