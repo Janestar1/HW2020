@@ -1,6 +1,6 @@
 
-let tasks = [];//{title:"123",done:false,vip：}
-
+let tasks = [];//{title:"123",done:false,vip：false}
+let vipitems = 0;
 function renderEditor() {
     let inputEl = document.querySelector("#default-todo-panel .todo-editor > input");
     //添加操作
@@ -11,8 +11,8 @@ function renderEditor() {
 
         let newTask = {
             title: inputEl.value,
-            done: false
-
+            done: false,
+            vip:false
         };
         inputEl.value = "";
         tasks.push(newTask);
@@ -76,14 +76,14 @@ function renderTaskItems() {
         labelEl.innerText = task.title;
         item.append(labelEl);
 
-        let ctrlbarEl = renderTaskCtrlBut(tasks, i);
+        let ctrlbarEl = renderTaskCtrlBut(tasks,item, i);
 
         item.append(ctrlbarEl);
         itemsEl.append(item);
     }
 }
 
-function renderTaskCtrlBut(tasks, taskIdx) {
+function renderTaskCtrlBut(tasks,item, taskIdx) {
     let ctrlbarEl = document.createElement("div");
     ctrlbarEl.className = "ctrlbar";
 
@@ -93,6 +93,7 @@ function renderTaskCtrlBut(tasks, taskIdx) {
         upEl.disabled = true;
     }
     upEl.innerText = "🠕";
+    //上移操作
     upEl.onclick = () => {
         let t = tasks[taskIdx];
         tasks[taskIdx] = tasks[taskIdx - 1];
@@ -107,6 +108,7 @@ function renderTaskCtrlBut(tasks, taskIdx) {
     if (taskIdx === tasks.length-1){
         downEl.disabled = true;
     }
+    //下移操作
     downEl.onclick = () => {
         let t = tasks[taskIdx];
         tasks[taskIdx] = tasks[taskIdx + 1];
@@ -128,6 +130,44 @@ function renderTaskCtrlBut(tasks, taskIdx) {
         }
      };
     ctrlbarEl.append(cancelEl);
+
+    //重要性按钮
+    let vipEl = document.createElement("input");
+    //vipEl.innerText = "☺";
+    vipEl.type = "checkbox";
+    vipEl.checked = tasks.vip;
+    if (tasks.vip)
+    {
+        item.classList.add("vip");
+    }
+    else{
+        item.classList.remove("vip");
+    }
+    
+    //重要性操作
+    vipEl.onchange = (e) => {
+        tasks.vip = e.target.checked;
+        if (tasks.vip) {
+            item.classList.add("vip");
+            let t = tasks;
+            for (let j = taskIdx; j > 0; j--) {
+                tasks[j] = tasks[j - 1];
+            }
+            tasks[0] = t;
+            vipitems++;
+        }
+        else {
+            item.classList.remove("vip");
+            let t = tasks;
+            for (let j = taskIdx; j <tasks.length-1; j++) {
+                tasks[j] = tasks[j+1];
+            }
+            tasks[tasks.length-1] = t;
+            vipitems--;
+        }
+        renderTaskItems();
+    };
+    ctrlbarEl.append(vipEl);
     return ctrlbarEl;
 }
 

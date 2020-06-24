@@ -45,8 +45,9 @@ body{
     float: right;
 }
 /*按钮样式*/
-.todo-items > .task.label{
+.todo-items > .task > label{
     flex-grow: 1;
+    font-size: 1em;
 }
 
 .todo-items .ctrlbar  button {
@@ -66,4 +67,24 @@ body{
 }
 .todo-items .ctrlbar > button:disabled :hover {
     font-weight: unset; 
+}
+
+.todo-items  .ctrlbarEl   input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(think.png);
+    margin-left: 18px;
+}
+.tasks.vip .ctrlbarEl   input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 1.5em;
+    height: 1.5em;
+    background: url(heart.png);
+    margin-left: 18px;
+}
+.tasks.vip >label{
+    color: red;
 }
