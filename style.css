@@ -2,12 +2,13 @@
 body{
     display: flex;
     justify-content: center;
+    font-family: "Times New Roman","楷体";
 }
 .todo-panel{
     width: 30em;
     border: 1px solid #eee;
     min-height: 20em;
-    box-shadow: 4px 6px 6px orange;
+    box-shadow: 4px 6px 6px #888;
     margin-top: 5em;
 }   
 /*输入框样式*/ 
@@ -41,6 +42,7 @@ body{
 .todo-items > .task > input{
     width: 1.5em;
     height: 1.5em;
+    float: right;
 }
 /*按钮样式*/
 .todo-items > .task.label{
@@ -52,6 +54,7 @@ body{
     background: none;
     color: blue;
     cursor: pointer;
+    margin-right: 6px;
 }
 .todo-items .ctrlbar  button:hover {
     font-weight: bolder; 

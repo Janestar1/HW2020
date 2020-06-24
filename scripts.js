@@ -114,19 +114,21 @@ function renderTaskCtrlBut(tasks, taskIdx) {
         renderTaskItems();
     };
     ctrlbarEl.append(downEl);
+
     //删除按钮
     let cancelEl = document.createElement("button");
     cancelEl.innerText = "×";
 
     //delete操作
     cancelEl.onclick = () => {
-        tasks.splice(taskIdx, 1);
-        renderTaskItems();
-    };
+        let result = confirm("您确定要永久删除这个待办项吗？");
+        if (result){
+            tasks.splice(taskIdx, 1);
+            renderTaskItems();
+        }
+     };
     ctrlbarEl.append(cancelEl);
-
     return ctrlbarEl;
-
 }
 
 renderEditor();
