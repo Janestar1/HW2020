@@ -12,11 +12,11 @@ function renderEditor() {
         let newTask = {
             title: inputEl.value,
             done: false,
-            vip:false
+            vip: false
         };
         inputEl.value = "";
         tasks.push(newTask);
-        console.log("tasks:", tasks);
+     // console.log("tasks:", tasks);
         renderTaskItems();
     }
     inputEl.onkeypress = (e) => {
@@ -76,14 +76,14 @@ function renderTaskItems() {
         labelEl.innerText = task.title;
         item.append(labelEl);
 
-        let ctrlbarEl = renderTaskCtrlBut(tasks,item, i);
+        let ctrlbarEl = renderTaskCtrlBut(task,item, i);
 
         item.append(ctrlbarEl);
         itemsEl.append(item);
     }
 }
 
-function renderTaskCtrlBut(tasks,item, taskIdx) {
+function renderTaskCtrlBut(task,item, taskIdx) {
     let ctrlbarEl = document.createElement("div");
     ctrlbarEl.className = "ctrlbar";
 
@@ -133,10 +133,10 @@ function renderTaskCtrlBut(tasks,item, taskIdx) {
 
     //重要性按钮
     let vipEl = document.createElement("input");
-    //vipEl.innerText = "☺";
+    vipEl.innerText = "☺";
     vipEl.type = "checkbox";
-    vipEl.checked = tasks.vip;
-    if (tasks.vip)
+    vipEl.checked = task.vip;
+    if (task.vip)
     {
         item.classList.add("vip");
     }
@@ -146,10 +146,10 @@ function renderTaskCtrlBut(tasks,item, taskIdx) {
     
     //重要性操作
     vipEl.onchange = (e) => {
-        tasks.vip = e.target.checked;
-        if (tasks.vip) {
+        task.vip = e.target.checked;
+        if (task.vip) {
             item.classList.add("vip");
-            let t = tasks;
+            let t = task;
             for (let j = taskIdx; j > 0; j--) {
                 tasks[j] = tasks[j - 1];
             }
@@ -158,7 +158,7 @@ function renderTaskCtrlBut(tasks,item, taskIdx) {
         }
         else {
             item.classList.remove("vip");
-            let t = tasks;
+            let t = task;
             for (let j = taskIdx; j <tasks.length-1; j++) {
                 tasks[j] = tasks[j+1];
             }

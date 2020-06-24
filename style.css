@@ -9,13 +9,14 @@ body{
     border: 1px solid #eee;
     min-height: 20em;
     box-shadow: 4px 6px 6px #888;
-    margin-top: 5em;
+    margin-top: 3em;
+    background-color: bisque;
 }   
 /*输入框样式*/ 
 .todo-editor{
     padding: 5px 20px;
     display: flex;
-    background-color: bisque;
+    background-color: #ff9933;
 }
 
 .todo-editor input{
@@ -30,7 +31,7 @@ body{
 
 /*待办任务样式*/
 .todp-items{
-    padding: 2px 5px;
+    padding: 5px 7px;
 }
 .todo-items > .task{
     display: flex;
@@ -40,22 +41,21 @@ body{
 /*字体大小,check-box颜色！*/
 
 .todo-items > .task > input{
-    width: 1.5em;
-    height: 1.5em;
-    float: right;
+    width: 2em;
+    height: 2em;
 }
+
 /*按钮样式*/
 .todo-items > .task > label{
     flex-grow: 1;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 .todo-items .ctrlbar  button {
     border: none;
     background: none;
-    color: blue;
+    color: #ff3366;
     cursor: pointer;
-    margin-right: 6px;
 }
 .todo-items .ctrlbar  button:hover {
     font-weight: bolder; 
@@ -69,22 +69,24 @@ body{
     font-weight: unset; 
 }
 
-.todo-items  .ctrlbarEl   input{
+.todo-items  .ctrlbar   input{
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 1.5em;
-    height: 1.5em;
+    width: 2.5em;
+    height: 2.5em;
+    /*background: "⚝";*/
     background: url(think.png);
-    margin-left: 18px;
+   /* margin-left: 18px;*/
 }
-.tasks.vip .ctrlbarEl   input{
+.task.vip .ctrlbar   input{
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 1.5em;
-    height: 1.5em;
+    width: 2.5em;
+    height:2.5em;
+   /* background: "🌟";*/
     background: url(heart.png);
-    margin-left: 18px;
+    /*margin-left: 18px;*/
 }
-.tasks.vip >label{
-    color: red;
+.task.vip > label{
+    color: #00cccc;
 }
